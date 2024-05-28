@@ -1,5 +1,5 @@
-<h1 style="display: flex; justify-content: center; gap: 1rem">
-  Todo list <img src="./public/rocket.svg" />
+<h1 align="center">
+  Todo-list &nbsp; <img src="./public/rocket.svg" />
 </h1>
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
