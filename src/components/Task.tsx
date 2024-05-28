@@ -1,21 +1,38 @@
 import styles from './Task.module.css'
+
 import {Trash} from "phosphor-react";
 
-export function Task() {
+import {ChangeEvent} from "react";
+
+interface TaskProps {
+  id: string;
+  content: string;
+  onChangeStatusTask: (id: string, finished: boolean) => void;
+  onDeleteTask: (id: string) => void;
+}
+
+export function Task({id, content, onChangeStatusTask, onDeleteTask}: TaskProps) {
+
+  function handleChangeStatusTask(event: ChangeEvent<HTMLInputElement>) {
+      onChangeStatusTask(id, event.target.checked)
+  }
+  function handleDeleteTask() {
+    onDeleteTask(id)
+  }
+
   return (
     <div className={styles.content}>
-        <input type="checkbox" id="1"/>
-      <label htmlFor="1">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          elementum, odio nec vehicula ultricies, nunc ex malesuada felis, nec
-          tincidunt justo metus ac eros. Integer ut nunc eget elit auctor
-          molestie. Integer nec purus auctor, ultricies velit eget, lobortis
-          mauris. Integer nec purus auctor, ultricies velit eget, lobortis
-          mauris.
-        </p>
+      <label htmlFor={id}>
+        <input
+          id={id}
+          onChange={handleChangeStatusTask}
+          type="checkbox"
+        />
+        <p>{content}</p>
       </label>
-      <button>
+      <button
+        onClick={handleDeleteTask}
+      >
         <Trash size={18} />
       </button>
     </div>

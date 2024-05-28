@@ -9,6 +9,7 @@ main {
 
     /* Calculo para dar um margin "negativo". 3.524375 é o tamanho total do meu formulario */
     margin-top: calc(0px - 3.524375rem / 2);
+    margin-bottom: 4rem;
 }
 
 .form > input {
@@ -55,4 +56,45 @@ main {
     &:hover {
         background: var(--blue-100);
     }
+}
+
+.todoWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.todoWrapper header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todoWrapper header div {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+
+    &:first-child {
+        color: var(--blue-100);
+    }
+
+    &:nth-child(2) {
+        color: var(--purple-100);
+    }
+}
+
+.todoWrapper header div span {
+    color: var(--gray-200);
+    font-size: 0.75rem;
+    padding: 0.125rem 0.5rem;
+
+    border-radius: 999px;
+    background: var(--gray-400);
+}
+
+.todoList {
+    display: grid;
+    gap: 1rem;
 }
