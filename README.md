@@ -2,12 +2,13 @@
   Todo list <img src="./public/rocket.svg" />
 </h1>
 
-<video src="/todo-list.mp4" autoPlay loop muted></video>
-
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/MIT-maker?style=for-the-badge&label=License&labelColor=%23303030&color=%23808080)
 
+<img src=".github/todo-list.gif">
+
+## Sobre
 Aplicação de lista de tarefas feita com React e TypeScript, podendo adicionar, remover e marcar como concluída as tarefas. Utilizando como persistência de dados o `localStorage`.
 
 ## Tecnologias
