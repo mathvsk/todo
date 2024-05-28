@@ -1,0 +1,26 @@
+.container {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+
+    padding: 4rem 1.5rem;
+
+    border-top: 1px solid var(--gray-400);
+    border-radius: 8px;
+}
+
+.container svg {
+    color: var(--gray-400);
+}
+
+.container p {
+    text-align: center;
+    color: var(--gray-300);
+    font-weight: 700;
+    line-height: 140%; /* 1.4rem */
+}
+
+.container span {
+    display: block;
+    font-weight: 400;
+}
