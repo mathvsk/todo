@@ -3,7 +3,7 @@ import styles from './App.module.css'
 
 import {PlusCircle} from "phosphor-react";
 
-import {ChangeEvent, FormEvent, useState} from "react";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 
 import {Header} from "./components/Header.tsx";
 import {Task} from "./components/Task.tsx";
@@ -12,33 +12,45 @@ import {Empty} from "./components/Empty.tsx";
 interface ITask {
   id: string;
   content: string;
-  finished?: boolean;
+  isChecked: boolean;
 }
 
 export function App() {
   const [tasks, setTasks] = useState<ITask[]>([])
   const [newTask, setNewTask] = useState('')
 
-  const completedCount = tasks.filter(task => task.finished).length;
+  const completedCount = tasks.filter(task => task.isChecked).length;
   const totalTasks = tasks.length;
 
-  function changeStatusTask(id: string, finished: boolean) {
+  useEffect(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+      updateTasks(JSON.parse(storedTasks));
+    }
+  }, []);
+
+  function updateTasks(updatedTasks: ITask[]) {
+    console.log(updatedTasks)
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
+  }
+  function changeStatusTask(id: string, isChecked: boolean) {
     const updatedTasks = tasks.map(task => {
       if (task.id === id) {
-        return { ...task, finished };
+        return { ...task, isChecked };
       }
       return task;
     });
 
-    setTasks(updatedTasks);
+    updateTasks(updatedTasks);
   }
   function deleteTask(id: string) {
-    if (!confirm('Deseja mesmo apagar essa tarefa?')) {
-      return
-    }
+    // if (!confirm('Deseja mesmo apagar essa tarefa?')) {
+    //   return
+    // }
 
     const updatedTasks = tasks.filter(task => task.id !== id);
-    setTasks(updatedTasks);
+    updateTasks(updatedTasks);
   }
   function handleCreateTask(event: FormEvent) {
     event.preventDefault()
@@ -48,15 +60,15 @@ export function App() {
     }
 
     const task:ITask = {
-      id: newTask,
+      id: new Date().getTime().toString(),
+      isChecked: false,
       content: newTask,
     }
 
-    setTasks([...tasks, task])
+    updateTasks([...tasks, task])
     setNewTask('')
   }
   function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
-    event.target.setCustomValidity('');
     setNewTask(event.target.value);
   }
 

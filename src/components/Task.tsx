@@ -7,11 +7,12 @@ import {ChangeEvent} from "react";
 interface TaskProps {
   id: string;
   content: string;
+  isChecked: boolean;
   onChangeStatusTask: (id: string, finished: boolean) => void;
   onDeleteTask: (id: string) => void;
 }
 
-export function Task({id, content, onChangeStatusTask, onDeleteTask}: TaskProps) {
+export function Task({id, content, isChecked, onChangeStatusTask, onDeleteTask}: TaskProps) {
 
   function handleChangeStatusTask(event: ChangeEvent<HTMLInputElement>) {
       onChangeStatusTask(id, event.target.checked)
@@ -25,6 +26,7 @@ export function Task({id, content, onChangeStatusTask, onDeleteTask}: TaskProps)
       <label htmlFor={id}>
         <input
           id={id}
+          checked={isChecked}
           onChange={handleChangeStatusTask}
           type="checkbox"
         />
